@@ -107,6 +107,7 @@
     function showForm() {
       document.getElementById('landingPage').classList.add('d-none');
       document.getElementById('formPage').classList.remove('d-none');
+      document.getElementById('startTime').value = Date.now();
     }
 
     function showCongrats() {
@@ -115,33 +116,27 @@
     }
 
     document.getElementById('applicationForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const modal = new bootstrap.Modal(document.getElementById('successModal'));
-      modal.show();
-    });
+        e.preventDefault();
+        const start = parseInt(document.getElementById('startTime').value);
+        const end = Date.now();
+        const duration = (end - start) / 1000;
 
-    document.getElementById('applicationForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const start = parseInt(document.getElementById('startTime').value);
-      const end = Date.now();
-      const duration = (end - start) / 1000;
+        const name = new URLSearchParams(window.location.search).get('name') || 'Anonymous';
 
-      const name = new URLSearchParams(window.location.search).get('name') || 'Anonymous';
-
-      fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, duration })
-      })
-      .then(() => {
-        const modal = new bootstrap.Modal(document.getElementById('successModal'));
-        modal.show();
-      })
-      .catch(err => {
-        alert('Error submitting data');
-        console.error(err);
-      });
-    });
+        fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, duration })
+        })
+        .then(() => {
+            const modal = new bootstrap.Modal(document.getElementById('successModal'));
+            modal.show();
+        })
+        .catch(err => {
+            alert('Error submitting data');
+            console.error(err);
+        });
+        });
 
   </script>
 </body>
