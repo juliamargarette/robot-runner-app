@@ -72,11 +72,11 @@
             <option>UI/UX Designer</option>
           </select>
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="resume" class="form-label">Upload Resume</label>
           <input type="file" class="form-control" id="resume" accept=".pdf,.doc,.docx" />
-        </div>
-        <button type="submit" class="btn btn-success w-100">Submit Application</button>
+        </div> -->
+        <button type="submit" id="btnSubmit" class="btn btn-success w-100">Submit Application</button>
       </form>
     </div>
   </div>
@@ -97,7 +97,7 @@
           Your application has been successfully submitted.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="showCongrats()">Continue</button>
+          <button type="button" id="btnContinue" class="btn btn-primary" data-bs-dismiss="modal" onclick="showCongrats()">Continue</button>
         </div>
       </div>
     </div>

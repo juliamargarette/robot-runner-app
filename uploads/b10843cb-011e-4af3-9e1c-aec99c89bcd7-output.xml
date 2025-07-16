@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.1 on win32)" generated="2025-07-17T02:29:09.650687" rpa="false" schemaversion="5">
+<suite id="s1" name="B10843Cb-011E-4Af3-9E1C-Aec99C89Bcd7" source="C:\Users\anonu\OneDrive\Documents\robot-runner-app\uploads\b10843cb-011e-4af3-9e1c-aec99c89bcd7.robot">
+<kw name="Open Application Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:10.071468" level="INFO">Opening browser 'Chrome' to base url 'https://robot-runner-app.onrender.com/form'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-07-17T02:29:10.071468" elapsed="5.681528"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-07-17T02:29:15.754280" elapsed="0.046313"/>
+</kw>
+<status status="PASS" start="2025-07-17T02:29:10.070464" elapsed="5.731646"/>
+</kw>
+<test id="s1-t1" name="Medium Execution Time with Delay" line="22">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:15.805454" level="INFO">Opening url 'https://robot-runner-app.onrender.com/form'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-07-17T02:29:15.804430" elapsed="0.286830"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:19.094022" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:16.091260" elapsed="3.003801"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:19.096061" level="INFO">Clicking button 'id=btnProceed'.</msg>
+<arg>id=btnProceed</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:19.095061" elapsed="0.179528"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:19.277589" level="INFO">Executing JavaScript:
+document.getElementById('startTime').value = Date.now()
+Without any arguments.</msg>
+<arg>document.getElementById('startTime').value = Date.now()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-07-17T02:29:19.275589" elapsed="0.015246"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=applicationForm</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-17T02:29:19.291835" elapsed="0.033649"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:22.328412" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:19.326485" elapsed="3.001927"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:22.329840" level="INFO">Typing text 'Julia' into text field 'id=firstName'.</msg>
+<arg>id=firstName</arg>
+<arg>${FIRST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:22.328412" elapsed="0.107618"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:25.437615" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:22.437053" elapsed="3.000562"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:25.438655" level="INFO">Typing text 'SnailOps' into text field 'id=lastName'.</msg>
+<arg>id=lastName</arg>
+<arg>${LAST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:25.438655" elapsed="0.189384"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:28.629212" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:25.628039" elapsed="3.001173"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:28.630221" level="INFO">Typing text 'med_execution@gmail.com' into text field 'id=email'.</msg>
+<arg>id=email</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:28.629212" elapsed="0.179152"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:31.810448" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:28.809687" elapsed="3.000761"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:31.810956" level="INFO">Typing text '09170000003' into text field 'id=phone'.</msg>
+<arg>id=phone</arg>
+<arg>${PHONE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:31.810956" elapsed="0.128727"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:31.939683" level="INFO">Typing text 'SnailPace999' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:31.939683" elapsed="0.175639"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:32.115322" level="INFO">Selecting options from selection list 'id=position' by label Project Manager.</msg>
+<arg>id=position</arg>
+<arg>${POSITION}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-07-17T02:29:32.115322" elapsed="0.189761"/>
+</kw>
+<kw name="Choose File" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:32.306105" level="INFO">Sending C:\Users\anonu\OneDrive\Desktop\scripts\cinema-tix.pdf to browser.</msg>
+<arg>id=resume</arg>
+<arg>${RESUME_FILE}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:32.306105" elapsed="0.089407"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:32.396552" level="INFO">Clicking button 'Submit Application'.</msg>
+<arg>Submit Application</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:32.396552" elapsed="0.194231"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=successModal</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-17T02:29:32.590783" elapsed="0.024447"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:33.615470" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:32.615230" elapsed="1.000240"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:29:33.615470" level="INFO">Clicking button 'Continue'.</msg>
+<arg>Continue</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:29:33.615470" elapsed="0.202927"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:29:38.818797" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:29:33.818397" elapsed="5.000400"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Congratulations</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-17T02:29:38.819421" elapsed="0.030177"/>
+</kw>
+<status status="PASS" start="2025-07-17T02:29:15.802110" elapsed="23.047488"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-07-17T02:29:38.851064" elapsed="2.248431"/>
+</kw>
+<status status="PASS" start="2025-07-17T02:29:09.651690" elapsed="31.447805"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="B10843Cb-011E-4Af3-9E1C-Aec99C89Bcd7">B10843Cb-011E-4Af3-9E1C-Aec99C89Bcd7</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

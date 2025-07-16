@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.1 on win32)" generated="2025-07-17T02:13:28.884400" rpa="false" schemaversion="5">
+<suite id="s1" name="B6Cbc700-17Ff-4199-A61D-11C02A0183Da" source="C:\Users\anonu\OneDrive\Documents\robot-runner-app\uploads\b6cbc700-17ff-4199-a61d-11c02a0183da.robot">
+<kw name="Open Application Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:29.120568" level="INFO">Opening browser 'Chrome' to base url 'https://robot-runner-app.onrender.com/form'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-07-17T02:13:29.120568" elapsed="6.124159"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-07-17T02:13:35.245995" elapsed="0.052240"/>
+</kw>
+<status status="PASS" start="2025-07-17T02:13:29.120052" elapsed="6.178183"/>
+</kw>
+<test id="s1-t1" name="Medium Execution Time with Delay" line="21">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:35.301299" level="INFO">Opening url 'https://robot-runner-app.onrender.com/form'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-07-17T02:13:35.300294" elapsed="0.168301"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:13:38.469336" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:13:35.468595" elapsed="3.000741"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:38.470523" level="INFO">Clicking button 'id=btnProceed'.</msg>
+<arg>id=btnProceed</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:38.469937" elapsed="0.130332"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:38.601791" level="INFO">Executing JavaScript:
+document.getElementById('startTime').value = Date.now()
+Without any arguments.</msg>
+<arg>document.getElementById('startTime').value = Date.now()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-07-17T02:13:38.600269" elapsed="0.013018"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=applicationForm</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-07-17T02:13:38.613287" elapsed="0.037076"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:13:41.652233" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:13:38.650363" elapsed="3.001870"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:41.653777" level="INFO">Typing text 'Julia' into text field 'id=firstName'.</msg>
+<arg>id=firstName</arg>
+<arg>${FIRST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:41.652754" elapsed="0.163680"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:13:44.819023" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:13:41.817452" elapsed="3.001571"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:44.821028" level="INFO">Typing text 'SnailOps' into text field 'id=lastName'.</msg>
+<arg>id=lastName</arg>
+<arg>${LAST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:44.819023" elapsed="0.378479"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:13:48.199313" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:13:45.197502" elapsed="3.001811"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:48.200349" level="INFO">Typing text 'med_execution@gmail.com' into text field 'id=email'.</msg>
+<arg>id=email</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:48.200349" elapsed="0.165124"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T02:13:51.370404" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T02:13:48.366274" elapsed="3.004130"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:51.371503" level="INFO">Typing text '09170000003' into text field 'id=phone'.</msg>
+<arg>id=phone</arg>
+<arg>${PHONE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:51.370404" elapsed="0.199961"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:51.571370" level="INFO">Typing text 'SnailPace999' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-17T02:13:51.571370" elapsed="0.133336"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:51.706214" level="INFO">Selecting options from selection list 'id=position' by label Project Manager.</msg>
+<arg>id=position</arg>
+<arg>${POSITION}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-07-17T02:13:51.704706" elapsed="0.114886"/>
+</kw>
+<kw name="Choose File" owner="SeleniumLibrary">
+<msg time="2025-07-17T02:13:51.820618" level="INFO">Sending C:\Users\anonu\OneDrive\Documents\robot-runner-app\UsersanonuOneDriveDesktopscriptscinema-tix.pdf to browser.</msg>
+<msg time="2025-07-17T02:13:51.967114" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-07-17T02:13:51.968141" level="FAIL">InvalidArgumentException: Message: invalid argument: File not found : C:UsersanonuOneDriveDesktopscriptscinema-tix.pdf
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0x7ff6a1e0e925+77845]
+	GetHandleVerifier [0x0x7ff6a1e0e980+77936]
+	(No symbol) [0x0x7ff6a1bc9cda]
+	(No symbol) [0x0x7ff6a1c1807f]
+	(No symbol) [0x0x7ff6a1c488ca]
+	(No symbol) [0x0x7ff6a1c12f76]
+	(No symbol) [0x0x7ff6a1c48ae0]
+	(No symbol) [0x0x7ff6a1c70b07]
+	(No symbol) [0x0x7ff6a1c486a3]
+	(No symbol) [0x0x7ff6a1c11791]
+	(No symbol) [0x0x7ff6a1c12523]
+	GetHandleVerifier [0x0x7ff6a20e683d+3059501]
+	GetHandleVerifier [0x0x7ff6a20e0bfd+3035885]
+	GetHandleVerifier [0x0x7ff6a21003f0+3164896]
+	GetHandleVerifier [0x0x7ff6a1e28c2e+185118]
+	GetHandleVerifier [0x0x7ff6a1e3053f+216111]
+	GetHandleVerifier [0x0x7ff6a1e172d4+113092]
+	GetHandleVerifier [0x0x7ff6a1e17489+113529]
+	GetHandleVerifier [0x0x7ff6a1dfe288+10616]
+	BaseThreadInitThunk [0x0x7ffa9d68e8d7+23]
+	RtlUserThreadStart [0x0x7ffa9e6dc34c+44]
+</msg>
+<arg>id=resume</arg>
+<arg>${RESUME_FILE}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<status status="FAIL" start="2025-07-17T02:13:51.819592" elapsed="0.166199">InvalidArgumentException: Message: invalid argument: File not found : C:UsersanonuOneDriveDesktopscriptscinema-tix.pdf
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0x7ff6a1e0e925+77845]
+	GetHandleVerifier [0x0x7ff6a1e0e980+77936]
+	(No symbol) [0x0x7ff6a1bc9cda]
+	(No symbol) [0x0x7ff6a1c1807f]
+	(No symbol) [0x0x7ff6a1c488ca]
+	(No symbol) [0x0x7ff6a1c12f76]
+	(No symbol) [0x0x7ff6a1c48ae0]
+	(No symbol) [0x0x7ff6a1c70b07]
+	(No symbol) [0x0x7ff6a1c486a3]
+	(No symbol) [0x0x7ff6a1c11791]
+	(No symbol) [0x0x7ff6a1c12523]
+	GetHandleVerifier [0x0x7ff6a20e683d+3059501]
+	GetHandleVerifier [0x0x7ff6a20e0bfd+3035885]
+	GetHandleVerifier [0x0x7ff6a21003f0+3164896]
+	GetHandleVerifier [0x0x7ff6a1e28c2e+185118]
+	GetHandleVerifier [0x0x7ff6a1e3053f+216111]
+	GetHandleVerifier [0x0x7ff6a1e172d4+113092]
+	GetHandleVerifier [0x0x7ff6a1e17489+113529]
+	GetHandleVerifier [0x0x7ff6a1dfe288+10616]
+	BaseThreadInitThunk [0x0x7ffa9d68e8d7+23]
+	RtlUserThreadStart [0x0x7ffa9e6dc34c+44]
+</status>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>Submit Application</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-07-17T02:13:51.987449" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id=successModal</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-07-17T02:13:51.987449" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-07-17T02:13:51.988514" elapsed="0.000000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>Continue</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-07-17T02:13:51.988514" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Congratulations</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-07-17T02:13:51.988514" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-07-17T02:13:35.299288" elapsed="16.690241">InvalidArgumentException: Message: invalid argument: File not found : C:UsersanonuOneDriveDesktopscriptscinema-tix.pdf
+  (Session info: chrome=138.0.7204.101)
+Stacktrace:
+	GetHandleVerifier [0x0x7ff6a1e0e925+77845]
+	GetHandleVerifier [0x0x7ff6a1e0e980+77936]
+	(No symbol) [0x0x7ff6a1bc9cda]
+	(No symbol) [0x0x7ff6a1c1807f]
+	(No symbol) [0x0x7ff6a1c488ca]
+	(No symbol) [0x0x7ff6a1c12f76]
+	(No symbol) [0x0x7ff6a1c48ae0]
+	(No symbol) [0x0x7ff6a1c70b07]
+	(No symbol) [0x0x7ff6a1c486a3]
+	(No symbol) [0x0x7ff6a1c11791]
+	(No symbol) [0x0x7ff6a1c12523]
+	GetHandleVerifier [0x0x7ff6a20e683d+3059501]
+	GetHandleVerifier [0x0x7ff6a20e0bfd+3035885]
+	GetHandleVerifier [0x0x7ff6a21003f0+3164896]
+	GetHandleVerifier [0x0x7ff6a1e28c2e+185118]
+	GetHandleVerifier [0x0x7ff6a1e3053f+216111]
+	GetHandleVerifier [0x0x7ff6a1e172d4+113092]
+	GetHandleVerifier [0x0x7ff6a1e17489+113529]
+	GetHandleVerifier [0x0x7ff6a1dfe288+10616]
+	BaseThreadInitThunk [0x0x7ffa9d68e8d7+23]
+	RtlUserThreadStart [0x0x7ffa9e6dc34c+44]
+</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-07-17T02:13:51.990848" elapsed="2.846048"/>
+</kw>
+<status status="FAIL" start="2025-07-17T02:13:28.886415" elapsed="25.951086"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="B6Cbc700-17Ff-4199-A61D-11C02A0183Da">B6Cbc700-17Ff-4199-A61D-11C02A0183Da</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

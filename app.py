@@ -5,6 +5,7 @@ import subprocess
 import time
 import uuid
 import json
+import re
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -24,26 +25,43 @@ def upload_file():
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
-        output_xml = filepath.replace('.robot', '-output.xml')
+        # ✅ Create output and log paths
+        basename = os.path.splitext(filename)[0]
+        output_xml = os.path.join(UPLOAD_FOLDER, f"{basename}-output.xml")
+        log_html = os.path.join(UPLOAD_FOLDER, f"{basename}-log.html")
 
-        # 🔧 Run Robot Framework with XML output
-        subprocess.run(['robot', '--output', output_xml, filepath], capture_output=True, text=True)
+        # 🛠 Run Robot Framework
+        result = subprocess.run([
+            'robot',
+            '--output', output_xml,
+            '--log', log_html,
+            '--report', 'NONE',
+            filepath
+        ], capture_output=True, text=True)
 
-        # 🕒 Parse the XML for actual elapsed time
-        try:
-            tree = ET.parse(output_xml)
-            root = tree.getroot()
-            elapsed_ms = int(root.find(".//suite").attrib.get("elapsedtime", 0))
-            exec_time = round(elapsed_ms / 1000, 2)
-        except Exception as e:
-            exec_time = -1  # fallback for error
+        exec_time = -1  # fallback
 
+        # ✅ Parse output.xml
+        if result.returncode == 0 and os.path.exists(output_xml):
+            try:
+                root = ET.parse(output_xml).getroot()
+                status = root.find(".//suite/status")
+                if status is not None and "elapsed" in status.attrib:
+                    exec_time = round(float(status.attrib["elapsed"]), 2)
+                    print(f"✅ Execution time parsed from <status>: {exec_time}s")
+                else:
+                    print("⚠️ Elapsed time not found in <status> tag.")
+            except Exception as e:
+                print("⚠️ XML parse error:", e)
+        else:
+            print("⚠️ Robot execution failed or missing output.xml")
+
+        # ✨ LOG RESULT TO JSON FILE HERE — DON'T SKIP THIS!!!
         log_result(username, exec_time)
 
         return redirect('/leaderboard')
 
     return render_template('upload.html')
-
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -53,7 +71,6 @@ def leaderboard():
     with open(LOG_FILE) as f:
         data = json.load(f)
 
-    # 🥇 Sort leaderboard by execution time (ascending)
     sorted_data = sorted(data, key=lambda x: x['duration'])
     return render_template('leaderboard.html', data=sorted_data)
 
@@ -78,9 +95,6 @@ def log_result(name, duration):
 def form():
     return render_template('form.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 @app.route('/api/results')
 def api_results():
     if not os.path.exists(LOG_FILE):
@@ -90,3 +104,6 @@ def api_results():
         data = json.load(f)
 
     return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
