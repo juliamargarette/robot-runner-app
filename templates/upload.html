@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Robot Script</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <h2 class="mb-4">🤖 Upload Your Robot Framework Script</h2>
+  <form action="/" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Your Name</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">.robot File</label>
+      <input type="file" name="robot_file" class="form-control" accept=".robot" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload & Run</button>
+  </form>
+</body>
+</html>
