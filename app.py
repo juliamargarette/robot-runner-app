@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, jsonify
+from xml.etree import ElementTree as ET
 import os
 import subprocess
 import time
@@ -19,34 +20,25 @@ def upload_file():
         if not file or not file.filename.endswith('.robot'):
             return 'Invalid file format. Only .robot files allowed.', 400
 
-        # 📦 Save uploaded file
         filename = f"{uuid.uuid4()}.robot"
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
-        # 📂 Set XML output filename
         output_xml = filepath.replace('.robot', '-output.xml')
 
-        # ▶️ Run Robot Framework with XML output logging
+        # 🔧 Run Robot Framework with XML output
         subprocess.run(['robot', '--output', output_xml, filepath], capture_output=True, text=True)
 
-        # ⏱ Try to get execution time from the actual robot XML output
+        # 🕒 Parse the XML for actual elapsed time
         try:
-            import xml.etree.ElementTree as ET
             tree = ET.parse(output_xml)
             root = tree.getroot()
-            elapsed = root.find(".//suite/status").attrib['elapsedtime']
-            exec_time = round(int(elapsed) / 1000, 2)  # ms → s
+            elapsed_ms = int(root.find(".//suite").attrib.get("elapsedtime", 0))
+            exec_time = round(elapsed_ms / 1000, 2)
         except Exception as e:
-            # Fallback using wall time
-            exec_time = round(time.time() - os.path.getmtime(filepath), 2)
+            exec_time = -1  # fallback for error
 
-        # 📝 Log result
         log_result(username, exec_time)
-
-        # 🧼 Optional cleanup: remove uploaded + XML files if needed
-        # os.remove(filepath)
-        # os.remove(output_xml)
 
         return redirect('/leaderboard')
 
