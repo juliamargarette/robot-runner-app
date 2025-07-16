@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.1 on win32)" generated="2025-07-17T03:17:26.511136" rpa="false" schemaversion="5">
+<suite id="s1" name="36De9D9E-Ef7D-45Cb-A842-800C59Bd8C5E" source="C:\Users\anonu\OneDrive\Documents\robot-runner-app\uploads\36de9d9e-ef7d-45cb-a842-800c59bd8c5e.robot">
+<kw name="Open Application Page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-07-17T03:17:26.991324" level="INFO">Opening browser 'chrome' to base url 'https://robot-runner-app.onrender.com/form'.</msg>
+<msg time="2025-07-17T03:17:26.991324" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2025-07-17T03:17:26.992523" level="FAIL">ValueError: Unable to parse option: "add_argument(--headless)"</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<arg>options=add_argument(--headless);add_argument(--disable-gpu);add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage)</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="FAIL" start="2025-07-17T03:17:26.991324" elapsed="0.195854">ValueError: Unable to parse option: "add_argument(--headless)"</status>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" start="2025-07-17T03:17:27.188295" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-07-17T03:17:26.991324" elapsed="0.196971">ValueError: Unable to parse option: "add_argument(--headless)"</status>
+</kw>
+<test id="s1-t1" name="Medium Execution Time with Delay" line="22">
+<status status="FAIL" start="2025-07-17T03:17:27.188295" elapsed="0.000000">Parent suite setup failed:
+ValueError: Unable to parse option: "add_argument(--headless)"</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-07-17T03:17:27.189300" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-07-17T03:17:26.513155" elapsed="0.676145">Suite setup failed:
+ValueError: Unable to parse option: "add_argument(--headless)"</status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="36De9D9E-Ef7D-45Cb-A842-800C59Bd8C5E">36De9D9E-Ef7D-45Cb-A842-800C59Bd8C5E</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
