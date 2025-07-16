@@ -19,16 +19,18 @@ def upload_file():
         if not file or not file.filename.endswith('.robot'):
             return 'Invalid file format. Only .robot files allowed.', 400
 
+        # 📦 Save the uploaded .robot file
         filename = f"{uuid.uuid4()}.robot"
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
+        # ⏱ Start measuring actual execution time
         start_time = time.time()
         result = subprocess.run(['robot', filepath], capture_output=True, text=True)
         end_time = time.time()
-
         exec_time = round(end_time - start_time, 2)
 
+        # 📝 Log to leaderboard JSON
         log_result(username, exec_time)
 
         return redirect('/leaderboard')
@@ -43,6 +45,7 @@ def leaderboard():
     with open(LOG_FILE) as f:
         data = json.load(f)
 
+    # 🥇 Sort leaderboard by execution time (ascending)
     sorted_data = sorted(data, key=lambda x: x['duration'])
     return render_template('leaderboard.html', data=sorted_data)
 
@@ -63,9 +66,9 @@ def log_result(name, duration):
     with open(LOG_FILE, 'w') as f:
         json.dump(data, f, indent=2)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 @app.route('/form')
 def form():
     return render_template('form.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
