@@ -19,23 +19,39 @@ def upload_file():
         if not file or not file.filename.endswith('.robot'):
             return 'Invalid file format. Only .robot files allowed.', 400
 
-        # 📦 Save the uploaded .robot file
+        # 📦 Save uploaded file
         filename = f"{uuid.uuid4()}.robot"
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
-        # ⏱ Start measuring actual execution time
-        start_time = time.time()
-        result = subprocess.run(['robot', filepath], capture_output=True, text=True)
-        end_time = time.time()
-        exec_time = round(end_time - start_time, 2)
+        # 📂 Set XML output filename
+        output_xml = filepath.replace('.robot', '-output.xml')
 
-        # 📝 Log to leaderboard JSON
+        # ▶️ Run Robot Framework with XML output logging
+        subprocess.run(['robot', '--output', output_xml, filepath], capture_output=True, text=True)
+
+        # ⏱ Try to get execution time from the actual robot XML output
+        try:
+            import xml.etree.ElementTree as ET
+            tree = ET.parse(output_xml)
+            root = tree.getroot()
+            elapsed = root.find(".//suite/status").attrib['elapsedtime']
+            exec_time = round(int(elapsed) / 1000, 2)  # ms → s
+        except Exception as e:
+            # Fallback using wall time
+            exec_time = round(time.time() - os.path.getmtime(filepath), 2)
+
+        # 📝 Log result
         log_result(username, exec_time)
+
+        # 🧼 Optional cleanup: remove uploaded + XML files if needed
+        # os.remove(filepath)
+        # os.remove(output_xml)
 
         return redirect('/leaderboard')
 
     return render_template('upload.html')
+
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -72,3 +88,13 @@ def form():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/api/results')
+def api_results():
+    if not os.path.exists(LOG_FILE):
+        return jsonify([])
+
+    with open(LOG_FILE) as f:
+        data = json.load(f)
+
+    return jsonify(data)
