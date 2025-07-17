@@ -4,7 +4,7 @@ Suite Setup       Setup Headless Browser
 Suite Teardown    Close Browser
 
 *** Variables ***
-${URL}           http://127.0.0.1:5500/templates/form.html
+${URL}           https://robot-runner-app.onrender.com/form
 ${FIRST_NAME}    Julia
 ${LAST_NAME}     SnailOps
 ${EMAIL}         med_execution@gmail.com

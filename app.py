@@ -5,7 +5,6 @@ import subprocess
 import time
 import uuid
 import json
-import re
 from datetime import datetime
 
 app = Flask(__name__)
@@ -15,6 +14,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    print("Current working directory:", os.getcwd())  # ✅ Debug current dir
+
     if request.method == 'POST':
         file = request.files['robot_file']
         username = request.form.get('username', 'Anonymous')
@@ -26,32 +27,45 @@ def upload_file():
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
-        # ✅ Create output and log paths
+        print("✅ Uploaded file saved to:", filepath)
+        print("📂 File exists after save?", os.path.exists(filepath))
+
         basename = os.path.splitext(filename)[0]
         output_xml = os.path.join(UPLOAD_FOLDER, f"{basename}-output.xml")
         log_html = os.path.join(UPLOAD_FOLDER, f"{basename}-log.html")
 
-        # 🛠 Run Robot Framework
-        result = subprocess.run([
-            'robot',
-            '--output', output_xml,
-            '--log', log_html,
-            '--report', 'NONE',
-            filepath
-        ], capture_output=True, text=True)
+        try:
+            result = subprocess.run(
+                [
+                    'robot',
+                    '--output', output_xml,
+                    '--log', log_html,
+                    '--report', 'NONE',
+                    filepath
+                ],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+
+            print("📤 Robot STDOUT:\n", result.stdout)
+            print("📥 Robot STDERR:\n", result.stderr)
+            print("📦 Robot return code:", result.returncode)
+
+        except Exception as e:
+            print("💥 Exception while running Robot:", e)
 
         exec_time = -1  # fallback
 
-        # ✅ Parse output.xml and calculate elapsed time
         if result.returncode == 0 and os.path.exists(output_xml):
+            print("✅ output.xml found:", output_xml)
             try:
                 root = ET.parse(output_xml).getroot()
                 status = root.find(".//suite/status")
                 if status is not None:
-                    # First try direct "elapsed"
                     if "elapsed" in status.attrib:
                         exec_time = round(float(status.attrib["elapsed"]), 2)
-                        print(f"✅ Execution time parsed from <status>: {exec_time}s")
+                        print(f"✅ Execution time from <status>: {exec_time}s")
                     else:
                         start = status.attrib.get("starttime")
                         end = status.attrib.get("endtime")
@@ -60,17 +74,17 @@ def upload_file():
                             end_dt = datetime.strptime(end, "%Y%m%d %H:%M:%S.%f")
                             delta = (end_dt - start_dt).total_seconds()
                             exec_time = round(delta, 2)
-                            print(f"✅ Execution time calculated from timestamps: {exec_time}s")
+                            print(f"✅ Execution time from timestamps: {exec_time}s")
                         else:
-                            print("⚠️ No start/end time found.")
+                            print("⚠️ No start/end time in <status>")
                 else:
-                    print("⚠️ <status> tag not found.")
+                    print("⚠️ <status> tag not found in output.xml")
             except Exception as e:
-                print("⚠️ XML parse error:", e)
+                print("⚠️ XML parsing failed:", e)
         else:
-            print("⚠️ Robot execution failed or output.xml missing.")
+            print("❌ output.xml not found or Robot failed")
 
-        # ✨ LOG RESULT TO JSON FILE
+        # 💾 Log result even if failed (for debugging)
         log_result(username, exec_time)
 
         return redirect('/leaderboard')
@@ -95,13 +109,18 @@ def log_result(name, duration):
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
     }
 
-    if os.path.exists(LOG_FILE):
-        with open(LOG_FILE, encoding='utf-8-sig') as f:
-            data = json.load(f)
-    else:
+    try:
+        if os.path.exists(LOG_FILE):
+            with open(LOG_FILE, encoding='utf-8-sig') as f:
+                data = json.load(f)
+        else:
+            data = []
+    except Exception as e:
+        print("⚠️ Failed to load JSON:", e)
         data = []
 
     data.append(entry)
+
     with open(LOG_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2)
 
