@@ -19,7 +19,10 @@ options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome(executable_path="./chromedriver/chromedriver", options=options)
+from selenium.webdriver.chrome.service import Service
+
+service = Service(executable_path="./chromedriver/chromedriver")
+driver = webdriver.Chrome(service=service, options=options)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
