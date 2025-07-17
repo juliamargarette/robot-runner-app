@@ -1,10 +1,11 @@
 *** Settings ***
 Library           SeleniumLibrary
+Library           sys    WITH NAME    sys
 Suite Setup       Setup Headless Browser
 Suite Teardown    Close Browser
 
 *** Variables ***
-${URL}           http://127.0.0.1:5500/templates/form.html
+${URL}           https://robot-runner-app.onrender.com/form
 ${FIRST_NAME}    Julia
 ${LAST_NAME}     SnailOps
 ${EMAIL}         med_execution@gmail.com
@@ -14,7 +15,8 @@ ${ADDRESS}       99 Patience Ave
 ${POSITION}      Project Manager
 ${GENDER}        Prefer not to say
 ${START_DATE}    2025-07-25
-${RESUME_FILE}   C:/Users/anonu/OneDrive/Desktop/scripts/cinema-tix.pdf
+# For file upload, use a relative path within the project if you re-enable Choose File
+${RESUME_FILE}   uploads/cinema-tix.pdf
 
 *** Keywords ***
 Setup Headless Browser
@@ -23,7 +25,7 @@ Setup Headless Browser
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
 
-    ${service}=    Evaluate    sys.modules['selenium.webdriver.chrome.service'].Service(executable_path='chromedriver/chromedriver.exe')    sys
+    ${service}=    Evaluate    sys.modules['selenium.webdriver.chrome.service'].Service(executable_path='chromedriver/chromedriver')    sys
 
     Create WebDriver    Chrome    options=${options}    service=${service}
     Go To    ${URL}
@@ -52,10 +54,10 @@ Medium Execution Time with Delay
     Wait Until Element Is Visible    id=btnSubmit    timeout=10s
     Scroll Element Into View         id=btnSubmit
 
-    Click Button    id=btnSubmit
-    # Choose File    id=resume    ${RESUME_FILE}  ← Uncomment if applicable and the file input is visible
+    # Choose File step (optional – enable only if applicable)
+    # Choose File    id=resume    ${RESUME_FILE}
 
-    # Click Button    Submit Application
+    Click Button    id=btnSubmit
 
     Wait Until Page Contains Element    id=successModal    timeout=10s
     Sleep    6s

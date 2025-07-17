@@ -6,12 +6,20 @@ import time
 import uuid
 import json
 from datetime import datetime
-import shutil  # ✅ for checking if 'robot' is available
+import shutil
+from selenium import webdriver
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 LOG_FILE = 'results.json'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(executable_path="./chromedriver/chromedriver", options=options)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
