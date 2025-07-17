@@ -7,26 +7,15 @@ import uuid
 import json
 from datetime import datetime
 import shutil
-from selenium import webdriver
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 LOG_FILE = 'results.json'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-
-from selenium.webdriver.chrome.service import Service
-
-service = Service(executable_path="./chromedriver/chromedriver")
-driver = webdriver.Chrome(service=service, options=options)
-
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    print("Current working directory:", os.getcwd())  # ✅ Debug current dir
+    print("Current working directory:", os.getcwd())
 
     if request.method == 'POST':
         file = request.files['robot_file']
@@ -73,6 +62,8 @@ def upload_file():
 
         except Exception as e:
             print("💥 Exception while running Robot:", e)
+            log_result(username, -1)
+            return f'Execution failed: {str(e)}', 500
 
         exec_time = -1  # fallback
 
@@ -156,6 +147,24 @@ def api_results():
         data = json.load(f)
 
     return jsonify(data)
+
+# ✅ Only init Selenium if needed (you can move this to another route if needed)
+# def create_driver():
+#     from selenium import webdriver
+#     from selenium.webdriver.chrome.service import Service
+#     from selenium.webdriver.chrome.options import Options
+
+#     options = Options()
+#     options.add_argument("--headless")
+#     options.add_argument("--no-sandbox")
+#     options.add_argument("--disable-dev-shm-usage")
+#     options.binary_location = "/usr/bin/google-chrome"
+
+#     service = Service(executable_path="./chromedriver/chromedriver")
+#     return webdriver.Chrome(service=service, options=options)
+
+# Example usage:
+# driver = create_driver()
 
 if __name__ == '__main__':
     app.run(debug=True)

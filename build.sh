@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Update and install base tools
 apt-get update && apt-get install -y wget unzip curl gnupg
 
 # Install Google Chrome
@@ -12,3 +13,10 @@ CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LAT
 wget -N https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip -d ./chromedriver
 chmod +x ./chromedriver/chromedriver
+
+# Export Chromedriver and Chrome binary paths
+export PATH=$PATH:$(pwd)/chromedriver
+export CHROME_BIN="/usr/bin/google-chrome"
+
+# Install Python dependencies
+pip install -r requirements.txt
