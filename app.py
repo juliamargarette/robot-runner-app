@@ -6,6 +6,7 @@ import time
 import uuid
 import json
 from datetime import datetime
+import shutil  # ✅ for checking if 'robot' is available
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -33,6 +34,13 @@ def upload_file():
         basename = os.path.splitext(filename)[0]
         output_xml = os.path.join(UPLOAD_FOLDER, f"{basename}-output.xml")
         log_html = os.path.join(UPLOAD_FOLDER, f"{basename}-log.html")
+
+        # ✅ Check if Robot Framework is installed
+        if not shutil.which('robot'):
+            print("❌ Robot Framework is not installed. Please install it with:")
+            print("    pip install robotframework")
+            log_result(username, -1)
+            return 'Robot Framework is not installed on this server.', 500
 
         try:
             result = subprocess.run(
