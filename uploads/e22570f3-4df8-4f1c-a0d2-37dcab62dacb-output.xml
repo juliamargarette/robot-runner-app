@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.13.2 on win32)" generated="20250717 12:25:32.234" rpa="false" schemaversion="4">
+<suite id="s1" name="E22570F3-4Df8-4F1C-A0D2-37Dcab62Dacb" source="C:\Users\admin\Documents\robot-runner-app\uploads\e22570f3-4df8-4f1c-a0d2-37dcab62dacb.robot">
+<kw name="Setup Headless Browser" type="SETUP">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20250717 12:25:32.630" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001DD9B5FECF0&gt;</msg>
+<status status="PASS" starttime="20250717 12:25:32.629" endtime="20250717 12:25:32.630"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20250717 12:25:32.630" endtime="20250717 12:25:32.630"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20250717 12:25:32.630" endtime="20250717 12:25:32.630"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20250717 12:25:32.630" endtime="20250717 12:25:32.630"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path='chromedriver/chromedriver.exe')</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20250717 12:25:32.631" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x000001DD9B5FEA50&gt;</msg>
+<status status="PASS" starttime="20250717 12:25:32.630" endtime="20250717 12:25:32.631"/>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>options=${options}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20250717 12:25:32.631" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20250717 12:25:32.631" endtime="20250717 12:25:33.971"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20250717 12:25:33.972" level="INFO">Opening url 'http://127.0.0.1:5500/templates/form.html'</msg>
+<status status="PASS" starttime="20250717 12:25:33.972" endtime="20250717 12:25:34.097"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250717 12:25:34.097" endtime="20250717 12:25:34.124"/>
+</kw>
+<status status="PASS" starttime="20250717 12:25:32.629" endtime="20250717 12:25:34.124"/>
+</kw>
+<test id="s1-t1" name="Medium Execution Time with Delay" line="33">
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:25:40.127" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:25:34.126" endtime="20250717 12:25:40.128"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id=btnProceed</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20250717 12:25:40.131" level="INFO">Clicking button 'id=btnProceed'.</msg>
+<status status="PASS" starttime="20250717 12:25:40.128" endtime="20250717 12:25:40.280"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>document.getElementById('startTime').value = Date.now()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250717 12:25:40.280" level="INFO">Executing JavaScript:
+document.getElementById('startTime').value = Date.now()
+Without any arguments.</msg>
+<status status="PASS" starttime="20250717 12:25:40.280" endtime="20250717 12:25:40.285"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>id=applicationForm</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250717 12:25:40.285" endtime="20250717 12:25:40.305"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:25:46.306" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:25:40.305" endtime="20250717 12:25:46.306"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=firstName</arg>
+<arg>${FIRST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250717 12:25:46.308" level="INFO">Typing text 'Julia' into text field 'id=firstName'.</msg>
+<status status="PASS" starttime="20250717 12:25:46.307" endtime="20250717 12:25:46.486"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:25:52.487" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:25:46.486" endtime="20250717 12:25:52.487"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=lastName</arg>
+<arg>${LAST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250717 12:25:52.489" level="INFO">Typing text 'SnailOps' into text field 'id=lastName'.</msg>
+<status status="PASS" starttime="20250717 12:25:52.488" endtime="20250717 12:25:52.611"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:25:58.611" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:25:52.611" endtime="20250717 12:25:58.612"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=email</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250717 12:25:58.614" level="INFO">Typing text 'med_execution@gmail.com' into text field 'id=email'.</msg>
+<status status="PASS" starttime="20250717 12:25:58.612" endtime="20250717 12:25:58.737"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:26:04.739" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:25:58.738" endtime="20250717 12:26:04.739"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=phone</arg>
+<arg>${PHONE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250717 12:26:04.740" level="INFO">Typing text '09170000003' into text field 'id=phone'.</msg>
+<status status="PASS" starttime="20250717 12:26:04.739" endtime="20250717 12:26:04.891"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250717 12:26:04.892" level="INFO">Typing text 'SnailPace999' into text field 'id=password'.</msg>
+<status status="PASS" starttime="20250717 12:26:04.891" endtime="20250717 12:26:05.043"/>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>id=position</arg>
+<arg>${POSITION}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20250717 12:26:05.044" level="INFO">Selecting options from selection list 'id=position' by label Project Manager.</msg>
+<status status="PASS" starttime="20250717 12:26:05.043" endtime="20250717 12:26:05.194"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>id=btnSubmit</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250717 12:26:05.194" endtime="20250717 12:26:05.229"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>id=btnSubmit</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20250717 12:26:05.229" endtime="20250717 12:26:05.536"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id=btnSubmit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20250717 12:26:05.538" level="INFO">Clicking button 'id=btnSubmit'.</msg>
+<status status="PASS" starttime="20250717 12:26:05.537" endtime="20250717 12:26:05.719"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>id=successModal</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250717 12:26:05.719" endtime="20250717 12:26:05.730"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:26:11.731" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:26:05.730" endtime="20250717 12:26:11.731"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Continue</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20250717 12:26:11.733" level="INFO">Clicking button 'Continue'.</msg>
+<status status="PASS" starttime="20250717 12:26:11.732" endtime="20250717 12:26:11.864"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>6s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250717 12:26:17.866" level="INFO">Slept 6 seconds</msg>
+<status status="PASS" starttime="20250717 12:26:11.865" endtime="20250717 12:26:17.866"/>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>Congratulations</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20250717 12:26:17.867" endtime="20250717 12:26:17.913"/>
+</kw>
+<status status="PASS" starttime="20250717 12:25:34.124" endtime="20250717 12:26:17.913"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20250717 12:26:17.915" endtime="20250717 12:26:20.036"/>
+</kw>
+<status status="PASS" starttime="20250717 12:25:32.235" endtime="20250717 12:26:20.036"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="E22570F3-4Df8-4F1C-A0D2-37Dcab62Dacb">E22570F3-4Df8-4F1C-A0D2-37Dcab62Dacb</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
